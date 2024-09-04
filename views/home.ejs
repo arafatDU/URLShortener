@@ -1,0 +1,23 @@
+<html>
+	<h1> URL Shortener </h1>
+  <% if (locals.id) { %>
+    <p> URL Generated: http://localhost:5000/<%= id %></p>
+  <% } %>
+	
+	<div>
+		<form method='POST' action='/api/urls'>
+		<label>Enter URL: </label>
+		<input type='text' name='url' placeholder="https://example.com" >
+		<button type='submit'> Generate </button>
+		</form>
+	</div>
+
+  <% if (locals.urls) { %>
+    <ul>
+      <% urls.forEach(function(url){ %>
+        <li> <%= url.shortId %> -> <%= url.redirectURL %> </li>	
+      <% }); %>
+    </ul>
+  <% } %>
+
+</html>
