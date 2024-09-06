@@ -4,9 +4,20 @@ const URL = require("../models/urlModel");
 
 router.get('/', async (req, res) => {
   try {
-    console.log("home route");
-    const allURL = await URL.find({});  // frontend should call api
+    const allURL = await URL.find({ createdBy: req.user?._id })  // frontend should call api
+    //console.log({allURL})
+    allURL.reverse();
     return res.render("home", {urls: allURL});
+
+  } catch (error) {
+    console.log(error);    
+  }
+});
+
+
+router.get('/signup', async (req, res) => {
+  try {
+    return res.render("signup");
 
   } catch (error) {
     console.log(error);
@@ -14,11 +25,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-
-router.get('/signup', async (req, res) => {
+router.get('/login', async (req, res) => {
   try {
-    console.log("signup route");
-    return res.render("signup");
+    return res.render("login");
 
   } catch (error) {
     console.log(error);

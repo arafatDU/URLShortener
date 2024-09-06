@@ -3,8 +3,8 @@ const { generateNewShortUrl, handleRedirect, handleGetAnalytics } = require("../
 const router = express.Router();
 
 
-router.post("/api/urls", generateNewShortUrl );
-router.get("/:shortId", handleRedirect);
+router.post("/", generateNewShortUrl );
+// router.get("/:shortId", handleRedirect);
 router.get("/analytics/:shortId", handleGetAnalytics);
 
 module.exports = router;

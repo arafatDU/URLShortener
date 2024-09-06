@@ -13,10 +13,12 @@ const generateNewShortUrl = async (req, res) => {
         shortId: shortId,
         redirectURL: url,
         visitHistory: [],
+        createdBy: req.user._id,
       }
     );
     // return res.status(201).json(newUrl);
-    return res.render('home', {id: shortId})
+    // return res.render('home', {id: shortId})
+    return res.redirect('/');
 
   } catch (error) {
     console.log(error);
