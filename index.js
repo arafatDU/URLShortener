@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDB = require("./db/connect");
 const urlRoute = require("./routes/urlRoute");
+const userRoute = require("./routes/userRoute");
 const staticRoute = require("./routes/staticRoute");
 const path = require('path');
 require("dotenv").config();
@@ -20,11 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/", urlRoute);
+app.use("/user", userRoute)
 app.use("/", staticRoute);
 
-app.get('/api/urls', (req, res) => {
-  return res.json({"message": "Hello World"});
-})
 
 
 const start = async () => {

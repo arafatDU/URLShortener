@@ -4,6 +4,7 @@ const URL = require("../models/urlModel");
 
 router.get('/', async (req, res) => {
   try {
+    console.log("home route");
     const allURL = await URL.find({});  // frontend should call api
     return res.render("home", {urls: allURL});
 
@@ -12,5 +13,19 @@ router.get('/', async (req, res) => {
     
   }
 });
+
+
+router.get('/signup', async (req, res) => {
+  try {
+    console.log("signup route");
+    return res.render("signup");
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+});
+
+
 
 module.exports = router;
