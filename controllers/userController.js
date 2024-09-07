@@ -29,9 +29,11 @@ const handleLogin = async (req, res) => {
     if (user.password !== password) {
       return res.status(400).json({message: "Invalid credentials"});
     }
-    const sessionId= uuidv4();
-    setUser(sessionId, user);
-    res.cookie("uid", sessionId);
+    // const sessionId= uuidv4();
+    // setUser(sessionId, user);
+    // res.cookie("uid", sessionId);
+    const token = setUser(user);
+    res.cookie("uid", token);
     return res.redirect('/');
   }
   catch (error) {

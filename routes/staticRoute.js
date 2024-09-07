@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const URL = require("../models/urlModel");
+const { restrictTo } = require('../middlewares/authMiddleware');
 
-router.get('/', async (req, res) => {
+router.get('/', restrictTo(["NORMAL", "ADMIN"]), async (req, res) => {
   try {
     const allURL = await URL.find({ createdBy: req.user?._id })  // frontend should call api
     //console.log({allURL})

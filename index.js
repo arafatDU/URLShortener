@@ -6,7 +6,7 @@ const staticRoute = require("./routes/staticRoute");
 const path = require('path');
 const { handleRedirect } = require("./controllers/urlController");
 const cookieParser = require('cookie-parser');
-const {restrictToLoggedInUserOnly, checkAuth} = require('./middlewares/authMiddleware');
+const { checkForAuthentication, restrictTo } = require('./middlewares/authMiddleware');
 require("dotenv").config();
 
 const MONGODB_URL = process.env.MONGODB_URI;
@@ -21,12 +21,13 @@ app.set('views', path.resolve('./views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(checkForAuthentication);
 
 
 // Routes
-app.use("/url", restrictToLoggedInUserOnly, urlRoute);
+app.use("/url", restrictTo(["NORMAL", "ADMIN"]), urlRoute);
 app.use("/user", userRoute)
-app.use("/", checkAuth, staticRoute);
+app.use("/", staticRoute);
 
 
 app.get("/:shortId", handleRedirect);
