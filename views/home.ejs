@@ -1,4 +1,89 @@
 <html>
+  <head>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      div {
+        text-align: center;
+      }
+      table {
+        margin: 0 auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+      }
+  
+      th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+  
+      thead {
+        background-color: #f2f2f2;
+      }
+  
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+  
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+  
+      tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 400px;
+        margin: 0 auto; /* Center the form horizontally */
+      }
+  
+      label {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #333;
+      }
+  
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+  
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+  
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+
 	<h1> URL Shortener </h1>
   <% if (locals.id) { %>
     <p> URL Generated: http://localhost:5000/<%= id %></p>
@@ -13,11 +98,25 @@
 	</div>
 
   <% if (locals.urls) { %>
-    <ul>
-      <% urls.forEach(function(url){ %>
-        <li> <%= url.shortId %> -> <%= url.redirectURL %> </li>	
-      <% }); %>
-    </ul>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Short ID</th>
+          <th>Original URL</th>
+          <th>Total Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% urls.forEach(function(url){ %>
+          <tr>
+            <td><%= url.shortId %></td>
+            <td><%= url.redirectURL %></td>
+            <td><%= url.visitHistory.length %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
   <% } %>
+  
 
 </html>
