@@ -8,7 +8,10 @@ router.get('/', restrictTo(["NORMAL", "ADMIN"]), async (req, res) => {
     const allURL = await URL.find({ createdBy: req.user?._id })  // frontend should call api
     //console.log({allURL})
     allURL.reverse();
-    return res.render("home", {urls: allURL});
+    return res.render("home", {
+      user: req.user,
+      urls: allURL
+    });
 
   } catch (error) {
     console.log(error);    
