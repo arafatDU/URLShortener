@@ -15,8 +15,8 @@ Make sure You have Node JS installed on your PC.
 No surprise in the first step:
 
 ```bash
-git clone https://github.com/arafatDU/node-blogify
-cd node-blogify
+git clone https://github.com/arafatDU/URLShortener.git
+cd URLShortener
 ```
 
 ### 2. Install dependencies:
