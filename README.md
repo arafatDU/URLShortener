@@ -1,5 +1,5 @@
 # URLShortener
-A URL Shortener application by Node.js Express.js MongoDB
+A URL Shortener application by Node.js Express.js MongoDB as Backend and EJS with Bootstrap as Frontend 
 
 
 ## Running Locally
